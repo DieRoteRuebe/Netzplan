@@ -7,7 +7,9 @@ public:
 
 	Node* head = nullptr;
 	Node* current = nullptr;
-	void reorderNotes();
+	Node* last = nullptr;
+	void reorderNotesForward();
+	void reorderNotesBackwards();
 	Node* searchNode(int search);
 
 };
