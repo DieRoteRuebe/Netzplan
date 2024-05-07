@@ -1,6 +1,6 @@
 #include "Handler.h"
 
-void Handler::reorderNotesForward()
+void Handler::linkingForwards()
 {
 	
 	while(current != NULL)
@@ -35,7 +35,7 @@ void Handler::reorderNotesForward()
 	}
 }
 
-void Handler::reorderNotesBackwards()
+void Handler::linkingBackwards()
 {
 	while (current != NULL)
 	{
@@ -84,4 +84,67 @@ Node* Handler::searchNode(int search)
 		}
 	}
 	return nullptr;
+}
+
+bool Handler::calculateForwards()
+{
+	//when head:
+	bool abzweigung = false;
+	int highest = current->dauer;
+		if (current->voragngsNr == 1)
+		{
+			current->FAZ = 0;
+			current->FEZ = current->dauer;
+		}
+
+
+		if (!current->nexts.empty())
+		{
+			if (current->nexts.size() > 1)
+			{
+				abzweigung = true;
+			}
+			for (int i = 0; i < current->nexts.size(); i++)
+			{
+				if(current->nexts[i] != NULL)
+				{ 
+					if (current->nexts[i]->FEZ > highest)
+					{
+						highest = current->nexts[i]->FEZ;
+					}
+
+					if(current->nexts[i]->FAZ < highest)
+					{
+						current->nexts[i]->FAZ = highest;
+					}
+					current->nexts[i]->FEZ = current->nexts[i]->FAZ + current->nexts[i]->dauer;
+				}
+				
+			}
+		}
+	return abzweigung;
+}
+
+void Handler::calculateBackwards()
+{
+}
+
+void Handler::recursionCalculate()
+{
+	while (current != NULL)
+	{
+		
+		bool abzweigung = Handler::calculateForwards();
+		Node* safepoint = current;
+		if(abzweigung == true)
+		{ 
+			for (int i = 0; i < current->nexts.size(); i++)
+			{
+				current = current->nexts[i];
+				Handler::recursionCalculate();
+				current = safepoint;
+			}
+		}
+		current = current->nexts[0];
+	}
 }

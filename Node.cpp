@@ -6,13 +6,21 @@ Node::Node(int VorgangNr, std::string Bezeichnung, std::vector<int> Vorgänger, s
 	Node::bezeichnung = Bezeichnung;
 	Node::vorgänger = Vorgänger;
 	Node::nachfolger = Nachfolger;
-	Node::dauer = dauer;
+	Node::dauer = Dauer;
 
 	Node::nexts = { nullptr };
 	Node::prevs = { nullptr };
 
 	Node::next = nullptr;
 	Node::prev = last;
+
+	Node::FAZ = 0;
+	Node::FEZ = 0;
+	Node::SAZ = 0;
+	Node::SEZ = 0;
+
+	Node::gesamtPuffer = 0;
+	Node::freierPuffer = 0;
 }
 
 Node::~Node()

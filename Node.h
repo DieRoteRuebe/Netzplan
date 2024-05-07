@@ -20,4 +20,12 @@ public:
 	std::vector<int> vorgänger;
 	std::vector<int> nachfolger;
 	int dauer;
+	//Siehe Zeichnung:
+	int FAZ;
+	int FEZ;
+	int SAZ;
+	int SEZ;
+
+	int gesamtPuffer;
+	int freierPuffer;
 };

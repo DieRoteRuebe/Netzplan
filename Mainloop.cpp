@@ -18,9 +18,11 @@ void Mainloop::run()
 	std::string s = "Csv.csv";
 	Loader::Loader(s, handler);
 	handler->current = handler->head;
-	handler->reorderNotesForward();
+	handler->linkingForwards();
 	handler->current = handler->last;
-	handler->reorderNotesBackwards();
+	handler->linkingBackwards();
+	handler->current = handler->head;
+	handler->recursionCalculate();
 	
 	int ii = 0;
 

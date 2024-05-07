@@ -21,8 +21,9 @@ void Loader::csvLoad(std::string fileName, Handler* handler)
 
 	std::ifstream input;
 	input.open(fileName);
-
 	std::string line = "";
+	std::getline(input, line);
+
 	while (std::getline(input, line))
 	{
 
