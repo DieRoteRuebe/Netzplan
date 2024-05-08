@@ -395,27 +395,34 @@ void iostreams::dataforNewNode(Handler* handler)
 
 
 	//Insert the links into the corresponding nodes and Return with a Failure if returning node == NULL:
-	for (auto i = vorgänger.begin(); i != vorgänger.end(); i++)
+	for (int i = 0; i < vorgänger.size(); i++)
 	{
 		Node* temp = nullptr;
-		temp = handler->searchNode(*i);
-		temp->nachfolger.push_back(vorgangsNr);
-		if (temp == NULL)
+		temp = handler->searchNode(vorgänger[i]);
+		if (temp != NULL)
 		{
-			std::cout << "Warning one of your following nodes wasnt found... Exiting now to mainmenu" << std::endl;
-			return;
+			temp->nachfolger.push_back(vorgangsNr);
 		}
+		else
+		{
+			vorgänger.pop_back();
+		}
+		
+
 
 	}
-	for (auto i = nachfolger.begin(); i != nachfolger.end(); i++)
+	for (int i = 0; i < nachfolger.size(); i++)
 	{
 		Node* temp = nullptr;
-		temp = handler->searchNode(*i);
-		temp->vorgänger.push_back(vorgangsNr);
-		if (temp == NULL)
+		temp = handler->searchNode(nachfolger[i]);
+		
+		if (temp != NULL)
 		{
-			std::cout << "Warning one of your following nodes wasnt found... Exiting now to mainmenu" << std::endl;
-			return;
+			temp->vorgänger.push_back(vorgangsNr);
+		}
+		else
+		{
+			nachfolger.pop_back();
 		}
 
 	}
