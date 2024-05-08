@@ -27,6 +27,9 @@
     <ClInclude Include="Handler.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Safepoints.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -42,6 +45,9 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
     <ClCompile Include="Handler.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Safepoints.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

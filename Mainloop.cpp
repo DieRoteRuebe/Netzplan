@@ -22,7 +22,10 @@ void Mainloop::run()
 	handler->current = handler->last;
 	handler->linkingBackwards();
 	handler->current = handler->head;
-	handler->recursionCalculate();
+	handler->recursionCalculateForwads();
+	handler->current = handler->last;
+	handler->recursionCalculateBackwards();
+	
 	
 	int ii = 0;
 

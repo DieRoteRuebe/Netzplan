@@ -16,8 +16,8 @@ Node::Node(int VorgangNr, std::string Bezeichnung, std::vector<int> Vorgänger, s
 
 	Node::FAZ = 0;
 	Node::FEZ = 0;
-	Node::SAZ = 0;
-	Node::SEZ = 0;
+	Node::SAZ = -99;
+	Node::SEZ = -99;
 
 	Node::gesamtPuffer = 0;
 	Node::freierPuffer = 0;
