@@ -2,7 +2,7 @@
 
 Node::Node(int VorgangNr, std::string Bezeichnung, std::vector<int> Vorgänger, std::vector<int> Nachfolger, int Dauer, Node* last)
 {
-	Node::voragngsNr = VorgangNr;
+	Node::vorgangsNr = VorgangNr;
 	Node::bezeichnung = Bezeichnung;
 	Node::vorgänger = Vorgänger;
 	Node::nachfolger = Nachfolger;

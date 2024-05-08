@@ -15,7 +15,7 @@ public:
 	~Node();
 
 
-	int voragngsNr;
+	int vorgangsNr;
 	std::string bezeichnung;
 	std::vector<int> vorgänger;
 	std::vector<int> nachfolger;

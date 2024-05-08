@@ -32,7 +32,7 @@ void iostreams::printFunctionLinear(Handler* handler)
 		}
 
 		std::cout << "-------------------------------------------------------" << '\n';
-		std::cout << "VorgangsNr: " << temp->voragngsNr << "   Bezeichnung:" << temp->bezeichnung << '\n';
+		std::cout << "VorgangsNr: " << temp->vorgangsNr << "   Bezeichnung:" << temp->bezeichnung << '\n';
 		std::cout << "Dauer: " << temp->dauer << "   Gesamtpuffer: " << temp->gesamtPuffer << " Freierpuffer: " << temp->freierPuffer << '\n';
 		std::cout << "FAZ: " << temp->FAZ << "   FEZ: " << temp->FEZ << '\n';
 		std::cout << "SAZ: " << temp->SAZ << "   SEZ: " << temp->SEZ << '\n';
@@ -110,7 +110,7 @@ void iostreams::printSingleNode(Node* node)
 		tempNachfolger += ' ';
 	}
 	std::cout << "-------------------------------------------------------" << '\n';
-	std::cout << "VorgangsNr: " << temp->voragngsNr << "   Bezeichnung:" << temp->bezeichnung << '\n';
+	std::cout << "VorgangsNr: " << temp->vorgangsNr << "   Bezeichnung:" << temp->bezeichnung << '\n';
 	std::cout << "Dauer: " << temp->dauer << "   Gesamtpuffer: " << temp->gesamtPuffer << " Freierpuffer: " << temp->freierPuffer << '\n';
 	std::cout << "FAZ: " << temp->FAZ << "   FEZ: " << temp->FEZ << '\n';
 	std::cout << "SAZ: " << temp->SAZ << "   SEZ: " << temp->SEZ << '\n';
@@ -244,19 +244,44 @@ void iostreams::dataforNewNode(Handler* handler)
 			}
 
 		} while (exitToggle != 1);
+
 		exitToggle = 0;
+		std::cout << '\n';
+		std::cout << '\n';
+
 		do
 		{
-			std::cout << "Please enter the previous Nodes, You can enter more then 1 by simply entering a Node and a spacebar inbetween" << '\n';
-			std::cout << "Example input: 2 3" << '\n';
-			std::cout << "Enter the previous Nodes now: ";
-			std::cin >> vorgängerTemp;
-			std::cout << "Do you want to save the the prevois nodes? Press 1 to save and continue, 2 to cancel, to enter other nodes" << '\n';
+			std::cout << "Please enter the following nodes to this node, please enter only one node after another" << '\n';
+			std::cout << "Enter 1 previous Node now: ";
+			int temp = 0;
+			int eingabe = 0;
+			std::cin >> temp;
+			std::cout << '\n';
+			nachfolger.push_back(temp);
+			temp = 0;
+			do
+			{
+				eingabe = 0;
+				std::cout << "Do you want to add another node to link? Press 1 to enter another node, 2 to save and contiue" << '\n';
+				std::cin >> eingabe;
+
+				if (eingabe != 2)
+				{
+					std::cout << "Enter the next node now: " << std::endl;
+					std::cin >> temp;
+					std::cout << '\n';
+					vorgänger.push_back(temp);
+					temp = 0;
+				}
+				
+			} while (eingabe != 2);
+			std::cout << "Do you want to save the follwoing nodes? Press 1 to save and continue, 2 to cancel, to enter other nodes" << '\n';
 			std::cout << "OR to exit to mainmenu press 3: " << '\n';
 			std::cin >> exitToggle;
 			if (exitToggle == 2)
 			{
-				vorgängerTemp = "";
+				vorgänger.clear();
+				vorgänger = std::vector<int>();
 			}
 			else if (exitToggle == 3)
 			{
@@ -264,20 +289,45 @@ void iostreams::dataforNewNode(Handler* handler)
 			}
 
 		} while (exitToggle != 1);
-
 		exitToggle = 0;
+		std::cout << '\n';
+		std::cout << '\n';
+
+
+		//Get the previous Nodes:
 		do
 		{
-			std::cout << "Please enter the following nodes to this node, You can enter more then 1 by simply entering a Node and a spacebar inbetween" << '\n';
-			std::cout << "Example input: 2 3" << '\n';
-			std::cout << "Enter the previous Nodes now: ";
-			std::cin >> nachfolgerTemp;
+			std::cout << "Please enter the previous nodes to this node, please enter only one node after another" << '\n';
+			std::cout << "Enter 1 previous Node now: ";
+			int temp = 0;
+			int eingabe = 0;
+			std::cin >> temp;
+			std::cout << '\n';
+			vorgänger.push_back(temp);
+			temp = 0;
+			do
+			{
+				eingabe = 0;
+				std::cout << "Do you want to add another node to link? Press 1 to enter another node, 2 to save and contiue" << '\n';
+				std::cin >> eingabe;
+				std::cout << '\n';
+				if (eingabe != 2)
+				{
+					std::cout << "Enter the next node now: " << std::endl;
+					std::cin >> temp;
+					std::cout << '\n';
+					vorgänger.push_back(temp);
+					temp = 0;
+				}
+			} while (eingabe != 2);
+			std::cout << '\n';
 			std::cout << "Do you want to save the the prevois nodes? Press 1 to save and continue, 2 to cancel, to enter other nodes" << '\n';
 			std::cout << "OR to exit to mainmenu press 3: " << '\n';
 			std::cin >> exitToggle;
 			if (exitToggle == 2)
 			{
-				nachfolgerTemp = "";
+				vorgänger.clear();
+				vorgänger = std::vector<int>();
 			}
 			else if (exitToggle == 3)
 			{
@@ -285,12 +335,16 @@ void iostreams::dataforNewNode(Handler* handler)
 			}
 
 		} while (exitToggle != 1);
+		std::cout << '\n';
+		std::cout << '\n';
 		exitToggle = 0;
+
+		//Get the Duration
 		do
 		{
 			std::cout << "Please enter the duration now: " << '\n';
 			std::cin >> dDauer;
-			std::cout << "Do you want to save the the prevois nodes? Press 1 to save and continue, 2 to cancel, to enter other nodes" << '\n';
+			std::cout << "Do you want to save the duration? Press 1 to save and continue, 2 to cancel, to enter other nodes" << '\n';
 			std::cout << "OR to exit to mainmenu press 3: " << '\n';
 			std::cin >> exitToggle;
 			if (exitToggle == 2)
@@ -304,6 +358,23 @@ void iostreams::dataforNewNode(Handler* handler)
 			
 
 		} while (exitToggle != 1);
+
+
+		//Loops to print the data
+		for (auto i = vorgänger.begin(); i != vorgänger.end(); i++)
+		{
+			vorgängerTemp += *i;
+			vorgängerTemp += ' ';
+		}
+		for (auto i = nachfolger.begin(); i != nachfolger.end(); i++)
+		{
+			nachfolgerTemp += *i;
+			nachfolgerTemp += ' ';
+		}
+		//Print the Data and make sure everything is right
+		std::cout << '\n'; 
+		std::cout << '\n'; 
+		std::cout << '\n';
 		std::cout << "Cool we are now set to continue" << '\n';
 		std::cout << '\n';
 		std::cout << '\n';
@@ -320,6 +391,35 @@ void iostreams::dataforNewNode(Handler* handler)
 	while (endExitToggle != 1);
 
 	std::cout << "The node will now be created, everything will be newly linked and calculated" << '\n';
+
+
+
+	//Insert the links into the corresponding nodes and Return with a Failure if returning node == NULL:
+	for (auto i = vorgänger.begin(); i != vorgänger.end(); i++)
+	{
+		Node* temp = nullptr;
+		temp = handler->searchNode(*i);
+		temp->nachfolger.push_back(vorgangsNr);
+		if (temp == NULL)
+		{
+			std::cout << "Warning one of your following nodes wasnt found... Exiting now to mainmenu" << std::endl;
+			return;
+		}
+
+	}
+	for (auto i = nachfolger.begin(); i != nachfolger.end(); i++)
+	{
+		Node* temp = nullptr;
+		temp = handler->searchNode(*i);
+		temp->vorgänger.push_back(vorgangsNr);
+		if (temp == NULL)
+		{
+			std::cout << "Warning one of your following nodes wasnt found... Exiting now to mainmenu" << std::endl;
+			return;
+		}
+
+	}
+
 	handler->addNode(vorgangsNr, bezeichnung, vorgänger, nachfolger, dDauer);
 
 	handler->current = handler->head;

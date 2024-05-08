@@ -31,7 +31,7 @@ void Saver::csvSafe(std::string fileName, Handler* handler)
 			tempNachfolger += std::to_string(*i);
 			tempNachfolger += ' ';
 		}
-		file << node->voragngsNr << "," << node->bezeichnung << "," << tempVorgänger << "," << tempNachfolger << "," << node->dauer << "," << node->FAZ << "," << node->FEZ << "," << node->SAZ << "," << node->SEZ << "," << node->gesamtPuffer << "," << node->freierPuffer << '\n';
+		file << node->vorgangsNr << "," << node->bezeichnung << "," << tempVorgänger << "," << tempNachfolger << "," << node->dauer << "," << node->FAZ << "," << node->FEZ << "," << node->SAZ << "," << node->SEZ << "," << node->gesamtPuffer << "," << node->freierPuffer << '\n';
 		node = node->next;
 	}
 	file.close();

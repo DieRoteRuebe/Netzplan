@@ -267,7 +267,7 @@ Node* Handler::searchNode(int search)
 	Node* Current = head;
 	while (Current != NULL)
 	{
-		if (Current->voragngsNr == search)
+		if (Current->vorgangsNr == search)
 		{
 			return Current;
 		}
