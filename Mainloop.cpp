@@ -77,13 +77,6 @@ void Mainloop::run()
 		}
 
 	} while (Mainloop::runvar == true);
-	
-
-
-	bool runvar = true;
-
-	int ii = 0;
-
-	
+		
 	
 }
