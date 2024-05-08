@@ -145,21 +145,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Handler.h" />
+    <ClInclude Include="IoStreams.h" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="Mainloop.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Safepoints.h" />
+    <ClInclude Include="Saver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Handler.cpp" />
+    <ClCompile Include="IoStreams.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mainloop.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Safepoints.cpp" />
+    <ClCompile Include="Saver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Csv.csv" />
+    <None Include="saved.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

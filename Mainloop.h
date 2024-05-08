@@ -1,5 +1,9 @@
 #pragma once
-
+#include "Node.h"
+#include "Handler.h"
+#include "Saver.h"
+#include "Loader.h"
+#include "IoStreams.h"
 
 class Mainloop
 {
@@ -9,5 +13,5 @@ public:
 
 	void run();
 	
-
+	bool runvar = true;
 };

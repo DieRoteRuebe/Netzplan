@@ -1,6 +1,6 @@
-Vorgangsnummer,Bezeichnung,Vorgänger,Nachfolger,Dauer
+Vorgangsnummer,Bezeichnung,Vorgaenger,Nachfolger,Dauer
 1, Zielsetzung,,2 3,2
-2, Marktforschung durchführen,1,3 4,20
+2, Marktforschung durchfuehren,1,3 4,20
 3, Produktideen gewinnen,1 2,4 5,10
 4, Produkt entwickeln,2 3,5,20
 5, Umsetzung,3 4,,10

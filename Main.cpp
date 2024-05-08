@@ -4,9 +4,8 @@
 
 int main()
 {
-	Mainloop mainloop;
-	mainloop.run();
-
+	Mainloop main;
+	main.run();
 	return 0;
 
 }

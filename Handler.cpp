@@ -1,5 +1,7 @@
 #include "Handler.h"
+#include <iostream>
 
+//Linking:
 void Handler::linkingForwards()
 {
 	
@@ -69,23 +71,7 @@ void Handler::linkingBackwards()
 	}
 }
 
-Node* Handler::searchNode(int search)
-{
-	Node* Current = head;
-	while (Current != NULL)
-	{
-		if (Current->voragngsNr == search)
-		{
-			return Current;
-		}
-		else
-		{
-			Current = Current->next;
-		}
-	}
-	return nullptr;
-}
-
+//Forwards Calculation, gets Called by recursionCalculateForwards();
 bool Handler::calculateForwards()
 {
 	//when head:
@@ -151,7 +137,7 @@ void Handler::recursionCalculateForwads()
 }
 
 
-
+//Backwards Calculation, gets Called by recursionCalculateBackwards();
 bool Handler::calculateBackwards()
 {
 	//when head:
@@ -215,4 +201,109 @@ void Handler::recursionCalculateBackwards()
 		last = current;
 		current = current->prevs.back();
 	}
+}
+
+
+//Puffer calculation:
+void Handler::calculatePufferRecurion()
+{
+
+	while (current != NULL)
+	{
+		bool abzweigung = Handler::calculatePuffer();
+		if (abzweigung == true)
+		{
+			for (int i = 0; i < current->nexts.size(); i++)
+			{
+				current = current->nexts[i];
+				Handler::calculatePufferRecurion();
+				current = Handler::safes.back()->safe;
+			}
+			Handler::safes.pop_back();
+		}
+
+		last = current;
+		current = current->nexts.back();
+	}
+}
+
+bool Handler::calculatePuffer()
+{
+
+
+	bool abzweigung = false;
+
+
+
+
+	if (current->nexts.size() > 1)
+	{
+		abzweigung = true;
+		safepoint* safe = new safepoint(current, Handler::high, Handler::low);
+		Handler::safes.push_back(safe);
+	}
+
+	//Gesamtpuffer
+	current->gesamtPuffer = current->SAZ - current->FAZ;
+
+	//Freierpuffer
+	for (int i = 0; i < current->nexts.size(); i++)
+	{
+		if (current->nexts.back() != NULL)
+		{
+			if (current->gesamtPuffer > current->nexts[i]->FAZ - current->FEZ)
+			{
+				current->freierPuffer = current->nexts[i]->FAZ - current->FEZ;
+			}
+		}
+	}
+	return abzweigung;
+}
+
+
+//Utilities:
+Node* Handler::searchNode(int search)
+{
+	Node* Current = head;
+	while (Current != NULL)
+	{
+		if (Current->voragngsNr == search)
+		{
+			return Current;
+		}
+		else
+		{
+			Current = Current->next;
+		}
+	}
+	return nullptr;
+}
+
+
+
+void Handler::addNode(int vorgangsNr, std::string bezeichnung, std::vector<int> vorgänger, std::vector<int> nachfolger, int dauer)
+{
+	tail->next = new Node(vorgangsNr, bezeichnung, vorgänger, nachfolger, dauer, tail);
+	tail = tail->next;
+}
+
+void Handler::calculateAll()
+{
+	//forwadsblock
+	Handler::current = Handler::head;
+	Handler::recursionCalculateForwads();
+	Handler::safes.clear();
+	Handler::safes = std::vector<safepoint*>();
+
+	//Backwardsblock
+	Handler::current = Handler::last;
+	Handler::recursionCalculateBackwards();
+	Handler::safes.clear();
+	Handler::safes = std::vector<safepoint*>();
+
+	//Pufferblock
+	Handler::current = Handler::head;
+	Handler::calculatePufferRecurion();
+	Handler::safes.clear();
+	Handler::safes = std::vector<safepoint*>();
 }

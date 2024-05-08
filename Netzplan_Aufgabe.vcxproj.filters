@@ -30,6 +30,12 @@
     <ClInclude Include="Safepoints.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Saver.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="IoStreams.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -50,9 +56,18 @@
     <ClCompile Include="Safepoints.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Saver.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="IoStreams.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Csv.csv">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+    <None Include="saved.csv">
       <Filter>Ressourcendateien</Filter>
     </None>
   </ItemGroup>
